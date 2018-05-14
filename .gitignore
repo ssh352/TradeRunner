@@ -1,0 +1,9 @@
+.svn/
+project/windows/.vs
+project/windows/Debug
+project/windows/Release
+project/windows/x64/
+project/windows/*.db
+project/windows/*.opendb
+
+
