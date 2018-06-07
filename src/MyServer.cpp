@@ -10,7 +10,7 @@ CMyServer::CMyServer(boost::asio::io_service& io_service, const boost::asio::ip:
 {
 	start_accept();
 
-	m_ofs.open("onlineCount.txt", std::ios::out);
+	//m_ofs.open("onlineCount.txt", std::ios::out);
 }
 
 CMyServer::~CMyServer()
@@ -40,11 +40,11 @@ void CMyServer::join(SESSION_PTR session)
 	boost::mutex::scoped_lock lock(m_mutexSession);
 	m_setSession.insert(session);
 
-	if (m_ofs.is_open())
-	{
-		m_ofs << m_setSession.size() << std::endl;
-		m_ofs.flush();
-	}
+	//if (m_ofs.is_open())
+	//{
+	//	m_ofs << m_setSession.size() << std::endl;
+	//	m_ofs.flush();
+	//}
 }
 
 void CMyServer::leave(SESSION_PTR session)
@@ -52,11 +52,11 @@ void CMyServer::leave(SESSION_PTR session)
 	boost::mutex::scoped_lock lock(m_mutexSession);
 	m_setSession.erase(session);
 
-	if (m_ofs.is_open())
-	{
-		m_ofs << m_setSession.size() << std::endl;
-		m_ofs.flush();
-	}
+	//if (m_ofs.is_open())
+	//{
+	//	m_ofs << m_setSession.size() << std::endl;
+	//	m_ofs.flush();
+	//}
 	
 }
 

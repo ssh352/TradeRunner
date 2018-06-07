@@ -223,7 +223,7 @@ void COrderData::handle_req(message &msg)
 	else
 	{
 		rapidjson::ParseErrorCode eCode = doc.GetParseError();// 获取解析出错时的原因
-		BOOST_LOG_SEV(theApp.m_log.get_logger_mt(), debug) << "请求报文的格式错误，错误码：" << doc.GetParseError() << "[" << __FILE__ << ":" << __LINE__ << "]";
+		BOOST_LOG_SEV(theApp.m_log.get_logger_mt(), debug) << "请求报文的格式错误，错误码：" << doc.GetParseError() << ",请求内容为:" << msg.data() << "[" << __FILE__ << ":" << __LINE__ << "]";
 	}
 }
 

@@ -45,7 +45,7 @@ private:
 	SESSION_PTR m_sessionInvalid;
 
 	
-	std::fstream m_ofs;
+	//std::fstream m_ofs;
 };
 
 typedef boost::shared_ptr<CMyServer> server_ptr;
