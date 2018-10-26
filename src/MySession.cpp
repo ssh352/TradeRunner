@@ -123,6 +123,19 @@ void CMySession::handle_write(const boost::system::error_code& error, std::size_
 			BOOST_LOG_SEV(theApp.m_log.get_logger_mt(), debug) << "(res) [" << this << "] send response success, len:" << bytes_transferred << ", content is:" << msg_send.data() << "[" << __FILE__ << ":" << __LINE__ << "]";
 
 			m_deque_res.pop_front();
+
+			if (!m_deque_res.empty())
+			{
+				message & msg_send = m_deque_res.front();
+
+				boost::asio::async_write(m_socket,
+					boost::asio::buffer(msg_send.data(), msg_send.length()),
+					boost::bind(&CMySession::handle_write,
+						shared_from_this(),
+						boost::asio::placeholders::error,
+						boost::asio::placeholders::bytes_transferred,
+						msg_send.length(), 0));
+			}
 		}
 	}
 	else
